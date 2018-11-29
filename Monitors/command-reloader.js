@@ -1,16 +1,20 @@
 const chokidar = require("chokidar");
 const { basename } = require("path");
-const Logger = require("../Monitors/console-monitor.js");
+const Logger = require("./console-monitor.js");
+const fs = require("fs");
 
 module.exports = (client) => {
-    chokidar.watch('./Commands/Developer', { awaitWriteFinish: true }).on("change", (file) => {
-        const commandName = basename(file, ".js")
-        Logger(`Command ${commandName}.js`, "commandupdating");
-        delete require.cache[require.resolve(`../Commands/Developer/${commandName}.js`)];
-        client.commands.delete(`../Commands/Developer/${commandName}.js`);
-        const props = require(`../Commands/Developer/${commandName}.js`);
-        client.commands.set(`../Commands/Developer/${commandName}.js`, props);
-        client.commands.set(commandName, props);
-        Logger(`${commandName}.js`, "commandupdate");
+    const categories = fs.readdirSync("../Commands");
+
+    categories.forEach(category => {
+        chokidar.watch(`./Commands/${category}`, { awaitWriteFinish: true }).on("change", (file) => {
+            const commandName = basename(file, ".js")
+            Logger(`Command ${commandName}.js`, "commandupdating");
+            delete require.cache[require.resolve(`../Commands/${category}/${commandName}.js`)];
+            client.commands.delete(`../Commands/${category}/${commandName}.js`);
+            const props = require(`../Commands/${category}/${commandName}.js`);
+            client.commands.set(commandName, props);
+            Logger(`${commandName}.js`, "commandupdate");
+        });
     });
 };
