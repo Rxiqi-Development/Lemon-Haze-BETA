@@ -2,3 +2,9 @@
 
 # Work In Progess
 You are free to pull request and help me build this bot :)
+
+
+# IMPORTANT
+If you are gonna host this bot then ensure you give the original developers credit.
+SuperNova#4271
+Jyguy#9535
