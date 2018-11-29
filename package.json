@@ -1,0 +1,30 @@
+{
+  "name": "lemonhaze-beta",
+  "version": "1.0.2",
+  "description": "Lemon Haze is a multi-purpose Discord Bot, that uses SQLite for such functions as Economy System & Blacklisting.",
+  "main": "lemonhaze-beta.js",
+  "dependencies": {
+    "chokidar": "^2.0.4",
+    "colors": "^1.3.2",
+    "discord.js": "^11.4.2",
+    "path": "^0.12.7",
+    "sqlite3": "^4.0.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "help"
+  },
+  "keywords": [
+    "lemonhaze",
+    "beta",
+    "cannabis",
+    "discord",
+    "moderation",
+    "commands",
+    "economy",
+    "system",
+    "blacklisting"
+  ],
+  "author": "SuperNova#4271",
+  "license": "ISC"
+}
