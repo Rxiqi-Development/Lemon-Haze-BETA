@@ -3,7 +3,6 @@ const client = new Discord.Client({ fetchAllMembers: true });
 
 // MONITORS
 const Logger = require("./Monitors/console-monitor.js"); // Monitoring System for Console.Logs
-// client.reloader = require("./Monitors/command-reloader.js");
 
 // CONFIGURATION
 client.auth = require("./Settings/authentication.json"); // Bot Token, API Keys, Etc
@@ -15,6 +14,8 @@ client.footer = `Developed By Rxiqi Development Team • My Prefix: ${client.def
 
 // COLLECTERS
 client.commands = new Discord.Collection(); // Collecter for the commands.
+
+require("./Monitors/command-reloader.js")(client);
 
 // STATUS
 client.on('ready', () => require('./Events/ready.js')(client));
