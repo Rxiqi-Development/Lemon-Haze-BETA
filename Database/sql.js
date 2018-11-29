@@ -1,7 +1,7 @@
 const sql = require("sqlite3");
 const database = new sql.Database("./Database/lemonhaze.sqlite");
-console.log("Initialized database connection.")
-let databaseInit = new Date();
+console.log("Initialized database connection.");
+const databaseInit = new Date();
 const tables = {
 	blacklist: [
 		"id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL",
@@ -26,19 +26,16 @@ const tables = {
 		"id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL",
 		"userID TEXT NOT NULL",
 		"userName TEXT NOT NULL",
-		"registered TEXT NOT NULL",
-
-	],
-
-
-}
+		"registered TEXT NOT NULL"
+	]
+};
 
 for (let table in tables) {
 	database.run(`CREATE TABLE ${table} (${tables[table].join(", ")})`, () => {
-		let readyTime = new Date(), TimeTookToLoad = Math.floor((readyTime - databaseInit) / 1000);
-		console.log(`Database Took ${TimeTookToLoad} second(s) to load table ${table}.`)
+        const readyTime = new Date();
+        const TimeTookToLoad = Math.floor((readyTime - databaseInit) / 1000);
+		console.log(`Database Took ${TimeTookToLoad} second(s) to load table ${table}.`);
 	});
-
 }
 
-module.exports = database
+module.exports = database;
