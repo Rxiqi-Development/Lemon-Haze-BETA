@@ -58,7 +58,7 @@ module.exports = async (client) => {
 
         files.forEach(f => {
             if (f.slice(-2) !== 'js') return;
-            client.commands[f.slice(-2)] = require(`../Commands/${category}/${f}`);
+            client.commands.set(f.slice(-2), require(`../Commands/${category}/${f}`));
         });
     });
 };
