@@ -1,7 +1,7 @@
 # Lemon-Haze-BETA
 
-# DEPRECATED
-THIS BOT IS NO LONGER BEING WORKED ON.
+# WORK IN PROGRESS
+Multiple people will be working on the development of this Discord Bot.
 
 # IMPORTANT
 If you are gonna host this bot then ensure you give the original developers credit.
