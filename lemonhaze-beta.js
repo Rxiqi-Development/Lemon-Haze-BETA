@@ -17,13 +17,17 @@ client.commands = new Discord.Collection(); // Collecter for the commands.
 
 require("./Monitors/command-reloader.js")(client);
 
-// STATUS
-client.on('ready', () => require('./Events/ready.js')(client));
 
-// ERROR CONTROLLING
+// ERROR CONTROLLING - Coming Soon
 // client.on("error", (error) => console.error(error));
 // client.on("warn", (warn) => console.warn(warn));
 // client.on("debug", (debug) => console.debug(debug));
+
+//EVENTS
+// *READY STATE*
+client.on('ready', () => require('./Events/ready.js')(client));
+// MESSAGE HANDLER
+client.on('message', message => require(`./Events/message.js`)(client, message));
 
 process.on('unhandledRejection', (error) => {
     Logger("[UNHANDLED REJECTION] " + (error.stack == undefined ? error.stack : error.stack), "warn");
