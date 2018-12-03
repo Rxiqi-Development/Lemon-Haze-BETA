@@ -41,14 +41,39 @@ try {
 				"userName TEXT NOT NULL",
 				"registered TEXT NOT NULL"
 			],
-			modlog: [
+			logs: [
 				"id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL",
 				"guildID TEXT NOT NULL",
 				"channelID TEXT NOT NULL"
 			],
+			prefix: [
+				"id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL",
+				"prefix TEXT NOT NULL",
+				"guildID TEXT NOT NULL"
+			],
+			modlog: [
+				"id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL",
+				"guildID TEXT NOT NULL",
+				"whom TEXT NOT NULL",
+				"moderator TEXT NOT NULL",
+				"reason TEXT NOT NULL"
+			],
+			welcome: [
+				"id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL",
+				"guildID TEXT NOT NULL",
+				"channelID TEXT NOT NULL",
+				"welcome_message TEXT NOT NULL"
+			],
+			muted: [
+				"id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL",
+				"userID TEXT NOT NULL",
+				"guildID TEXT NOT NULL"
+				
+			],
 		};
 
 		for (let table in tables) {
+			
 			database.run(`CREATE TABLE ${table} (${tables[table].join(", ")})`, () => {
 				const readyTime = new Date();
 				const TimeTookToLoad = Math.floor((readyTime - databaseInit) / 1000);
