@@ -1,4 +1,5 @@
 {
     "prefix" : "lh!",
-    "debugMode":false
+    "owner" : "",
+    "debugMode":true
 }
