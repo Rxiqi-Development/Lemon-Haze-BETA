@@ -24,6 +24,14 @@ module.exports = function (logMessage, type = "info") {
       logString = colors.green(logMessage);
       logFormatting = colors.bgGreen(colors.black(colors.bold("[ SUCCESS ]")));
       break;
+    case "eventupdated":
+      logString = colors.green(logMessage);
+      logFormatting = colors.bgGreen(colors.black(colors.bold("[ EVENT UPDATE SUCCESS ]")));
+      break;
+    case "eventupdating":
+      logString = colors.green(logMessage);
+      logFormatting = colors.black(colors.bold("[ EVENT UPDATING ]"));
+      break;
     case "commandupdate":
       logString = colors.green(logMessage);
       logFormatting = colors.bgGreen(colors.black(colors.bold("[ COMMAND UPDATE SUCCESS ]")));
