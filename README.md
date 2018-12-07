@@ -1,4 +1,4 @@
-# Lemon-Haze-BETA
+[![Discord Bots](https://discordbots.org/api/widget/518819275176148995.svg)](https://discordbots.org/bot/518819275176148995)
 
 # WORK IN PROGRESS
 Multiple people will be working on the development of this Discord Bot.
