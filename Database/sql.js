@@ -1,8 +1,12 @@
 const sql = require("sqlite3");
-const database = new sql.Database("./Database/lemonhaze.sqlite");
+const database = new sql.Database("./Database/syndicate.sqlite");
 const Logger = require("../Monitors/console-monitor.js")
+const request = require('snekfetch');
+
+
 
 try {
+	console.log(`Checking For Latest Version`)
 	let djsVersion = require("../node_modules/discord.js/package.json").version;
 	if (djsVersion !== '11.4.2') {
 		Logger("\nOutdated Discord.JS Version\nPlease Update And Try Again!", "critical")
@@ -13,6 +17,7 @@ try {
 		Logger("\nOutdated Lemon Haze BETA Version\nPlease Update From The Github And Try Again!", "critical")
 		process.exit(1)
 	} else {
+		console.log(`Version Up-to-date... \nRunning Bot...`)
 		console.log("Initialized database connection.");
 		const databaseInit = new Date();
 		const tables = {
@@ -54,9 +59,7 @@ try {
 			modlog: [
 				"id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL",
 				"guildID TEXT NOT NULL",
-				"whom TEXT NOT NULL",
-				"moderator TEXT NOT NULL",
-				"reason TEXT NOT NULL"
+				"channelID TEXT NOT NULL"
 			],
 			welcome: [
 				"id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL",
@@ -68,12 +71,78 @@ try {
 				"id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL",
 				"userID TEXT NOT NULL",
 				"guildID TEXT NOT NULL"
-				
 			],
+			xp: [
+				"id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL",
+				"guildID TEXT NOT NULL",
+				"userID TEXT NOT NULL",
+				"exp TEXT NOT NULL",
+				"level TEXT NOT NULL"
+			],
+			toggleLevel: [
+				"id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL",
+				"guildID TEXT NOT NULL",
+				"bool TEXT NULL"
+			],
+			deleteinvites: [
+				"id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL",
+				"guildID TEXT NOT NULL",
+				"bool TEXT NULL"
+			],
+			toggleCaptcha: [
+				"id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL",
+				"guildID TEXT NOT NULL",
+				"bool TEXT NULL"
+			],
+			levelling: [
+				"id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL",
+				"guildID TEXT NOT NULL",
+				"channelID TEXT NOT NULL"
+			],
+			captcha: [
+				"id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL",
+				"guildID TEXT NOT NULL",
+				"userID TEXT NOT NULL",
+				"lookingfor TEXT NOT NULL"
+			],
+			captchaset: [
+				"id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL",
+				"guildID TEXT NOT NULL",
+				"channelID TEXT NOT NULL"
+			],
+			captcharole: [
+				"id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL",
+				"guildID TEXT NOT NULL",
+				"roleID TEXT NOT NULL"
+			],
+			levels: [
+				"id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL",
+				"guildID TEXT NOT NULL",
+				"level TEXT NOT NULL"
+			],
+			warnings: [
+				"id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL",
+				"userID TEXT NOT NULL",
+				"guildID TEXT NOT NULL",
+				"warnamount TEXT NOT NULL",
+				"warnreason TEXT NOT NULL",
+			],
+			deletelinks: [
+				"id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL",
+				"guildID TEXT NOT NULL",
+				"bool TEXT NULL"
+			],
+			blacklist: [
+				"id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL",
+				"userID TEXT NOT NULL",
+				"moderator TEXT NOT NULL",
+				"reason TEXT NOT NULL"
+			],
+
 		};
 
 		for (let table in tables) {
-			
+
 			database.run(`CREATE TABLE ${table} (${tables[table].join(", ")})`, () => {
 				const readyTime = new Date();
 				const TimeTookToLoad = Math.floor((readyTime - databaseInit) / 1000);
@@ -81,6 +150,10 @@ try {
 			});
 		}
 	}
+
+
+
+
 } catch (err) {
 	Logger(err.stack == undefined ? err : err.stack, "critical")
 }

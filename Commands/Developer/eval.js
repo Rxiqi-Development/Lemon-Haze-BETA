@@ -4,6 +4,7 @@ const hastebin = require('hastebin-gen');
 const moment = require('moment')
 require("moment-duration-format");
 const os = require("os");
+const snekfetch = require('snekfetch');
 module.exports = (client, message, args) => {
     var pastebin = new PastebinAPI(`${client.auth.PastebinAPI}`); // Get from https://pastebin.com/api#1
     if (message.author.id !== client.default.owner) return;
@@ -87,3 +88,13 @@ module.exports = (client, message, args) => {
         }
     }
 }
+exports.conf = {
+    enabled: true,
+    aliases: ["test"],
+};
+
+exports.help = {
+    name: "eval",
+    description: "Evaluates input",
+    usage: "eval <commandname>"
+};
