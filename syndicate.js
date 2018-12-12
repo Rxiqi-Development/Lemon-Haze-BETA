@@ -10,12 +10,10 @@ require("./Monitors/event-reloader.js")(client); // Automated Event Reloader
 
 
 // CONFIGURATION
-// var users = client.users.size.toLocaleString();
-// const result = users.filter(bot => !bot.users.bot);
 client.auth = require("./Settings/authentication.json"); // Bot Token, API Keys, Etc
 client.default = require("./Settings/default-options.json"); // Your bots default settings such as prefix.
 client.ascii = require("./Settings/ascii-console.json");// Changable ASCII Font
-client.packages = require("./package.json"); // Required to get Bot's Current Version.
+client.packages = require("./package.json"); // Required to get Bot's Current Version. (DO NOT REMOVE)
 client.database = require("./Database/sql.js"); // Database Setup & Functions
 
 client.footer = `Developed By Syndicate Corp • My Default Prefix: ${client.default.prefix}`; // Footer of each Embed.
@@ -36,6 +34,10 @@ client.aliases = new Discord.Collection();
 
 //ADMINISTRATOR COMMANDS
 client.commands.set('config', require('./Commands/Administrator/config.js'));// Guild Configuration System
+client.commands.set('logs', require('./Commands/Administrator/logs.js'));// Guild Logs System
+client.commands.set('mod', require('./Commands/Administrator/mod.js'));// Guild ModLogs System
+client.commands.set('welcome', require('./Commands/Administrator/welcome.js'));// Guild Welcome/Leave Log System
+client.commands.set('setprefix', require('./Commands/Administrator/setprefix.js'));// Guild Custom Prefix System
 //DEVELOPER COMMANDS
 client.commands.set('eval', require('./Commands/Developer/eval.js'));// Evaluate Code System
 //GENERAL USE COMMANDS
@@ -52,6 +54,7 @@ client.on("error", (error) => console.error(error));
 // client.on("debug", (debug) => console.debug(debug));
 
 //EVENTS
+
 // *READY STATE*
 client.on('ready', () => require('./Events/ready.js')(client));
 // MESSAGE 
@@ -64,6 +67,8 @@ client.on('guildMemberAdd', member => require('./Events/guildMemberAdd.js')(clie
 client.on('guildMemberRemove', member => require('./Events/guildMemberRemove.js')(client, member));
 client.on('guildCreate', guild => require('./Events/guildCreate.js')(client, guild));
 client.on('guildDelete', member => require('./Events/guildDelete.js')(client, member));
+
+
 process.on('unhandledRejection', (error) => {
     Logger("[UNHANDLED REJECTION] " + (error.stack == undefined ? error.stack : error.stack), "warn");
 });

@@ -1,2 +1,2 @@
-node lemonhaze-beta.js
+node syndicate.js
 pause
