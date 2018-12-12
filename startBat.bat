@@ -1,0 +1,2 @@
+node syndicate.js
+pause

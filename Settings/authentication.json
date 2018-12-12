@@ -1,4 +1,6 @@
 {
     "token":"",
-    "YoutubeAPI":""
+    "YoutubeAPI":"",
+    "PastebinAPI" : "",
+    "DBLToken" : ""
 }
