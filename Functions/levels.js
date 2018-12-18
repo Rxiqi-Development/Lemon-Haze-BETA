@@ -41,8 +41,9 @@ module.exports = async (client, message) => {
                             if (!row) {
                                 message.channel.send(xp).then(m => m.delete(100 * 100));
                             }
-                            const channel = message.guild.channels.find(c => c.id === row.channelID);
+                            
                             if (row) {
+                                const channel = message.guild.channels.find(c => c.id === row.channelID);
                                 channel.send(xp)//.then(m => m.delete(100 * 100));
                             }
                         })
