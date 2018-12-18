@@ -10,7 +10,7 @@ try {
 	request.get(`http://syndicate-corporation.glitch.me/version`).then(r => {
 		
 		let botVersion = require("../package.json").version;
-		if (botVersion && r.body !== '1.0.2') {
+		if (botVersion && r.body !== '1.0.3') {
 			console.log("Please go update your bot source from the github here: https://github.com/Rxiqi-Development/Syndicate-Corporation")
 			process.exit(1)
 		}else{
