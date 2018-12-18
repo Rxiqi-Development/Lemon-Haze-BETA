@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
 module.exports = async (client, message) => {
-    if (message.author.bot) return;
+  
     client.database.get('SELECT * FROM toggleLevel WHERE guildID = ?', [message.guild.id], (err, row) => {
 
         if (err) {
