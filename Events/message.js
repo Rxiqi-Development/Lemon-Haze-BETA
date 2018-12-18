@@ -3,21 +3,15 @@ const chalk = require('chalk');
 const Logger = require("../Monitors/console-monitor.js")
 const Discord = require('discord.js')
 module.exports = (client, message) => {
-
+    
+    if (message.author.bot) return;
+    if (message.channel.type === "dm") return;
+    
     require('../Functions/levels.js')(client, message);
     //require('../Functions/captcha.js')(client, message); //Released In Next Update
     require('../Functions/deleteinvites.js')(client, message);
     ///require('../Functions/lockdown.js')(client, message); //Released In Next Update
     require('../Functions/deletelinks.js')(client, message);
-
-
-
-    if (message.author.bot) return;
-
-
-
-
-    if (message.channel.type === "dm") return;
 
     client.database.get(`SELECT * FROM prefix WHERE guildID = ${message.guild.id}`, (err, r) => {
        
