@@ -1,5 +1,5 @@
 module.exports = async (client, message) => {
-    if (message.author.bot) return;
+   
     if (message.member.hasPermission("ADMINISTRATOR"||"MANAGE_MESSAGES"||"KICK_MEMBERS"||"BAN_MEMBERS")) return;
     client.database.get('SELECT bool FROM deletelinks WHERE guildID = ?', [message.guild.id], (err, row) => {
         if (!row || !row.bool) return;
