@@ -1,6 +1,6 @@
 
 
-#Update:
+# Update:
 After numerous requests, I have decided to start work on this source again,
 The API Version Checker will announce the new update release (IF YOU REBOOT THE BOT)
 In the new version the API Version Checker will check once every hour for an update,
